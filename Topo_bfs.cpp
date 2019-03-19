@@ -56,6 +56,7 @@ class Graph
 
 			void topological_bfs()
 			{
+				
 				map<T,int> indegree;
 				queue<T> q;
 				// indegree ==0
@@ -67,18 +68,25 @@ class Graph
 				{
 					for(T neighbour : graph[i.first])
 						indegree[neighbour] +=1;
+
 				}
+
+				// printing indegree of elements
+
+				for(auto i : indegree)
+					cout<<i.first<<" "<<i.second<<endl;
 
 
 				//pushing 0 indegree vertices in the queue
-				for(auto i: graph)
+				for(auto i: indegree)
 				{
-					for(T neighbour : graph[i.first])
-						if (indegree[neighbour] == 0)
-							q.push(neighbour);
+					if(i.second == 0)
+						q.push(i.first);
 				}
 
+				cout<<"Topological order\n";
 
+				
 				while(!q.empty())
 				{
 					T element = q.front();
@@ -93,7 +101,9 @@ class Graph
 							q.push(neighbour);
 					}
 
-				}				
+				}
+
+				cout<<endl;				
 
 			}
 
